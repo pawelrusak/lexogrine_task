@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "../../styles/variables";
+
+.checkbox {
+  margin: variables.$checkbox-margin;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+
+  &__input {
+    appearance: none;
+    background-color: variables.$checkbox-input-unchecked-color;
+    margin: 0;
+
+    font: inherit;
+    color: currentColor;
+    width: variables.$checkbox-input-size;
+    height: variables.$checkbox-input-size;
+    border-radius: variables.$checkbox-input-border-radius;
+
+    display: grid;
+    place-content: center;
+
+    &::before {
+      content: url("../../assets/icons/check-icon.svg");
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0);
+      transform-origin: bottom left;
+      transition: 120ms transform ease-in-out;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+
+    &:checked {
+      background-color: variables.$checkbox-input-checked-color;
+    }
+  }
+
+  &__label {
+    color: variables.$checkbox-label-font-color;
+    font-size: variables.$checkbox-label-font-size;
+    line-height: variables.$checkbox-label-line-height;
+    font-weight: variables.$checkbox-label-font-weight;
+    cursor: pointer;
+  }
+}

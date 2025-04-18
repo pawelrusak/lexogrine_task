@@ -135,3 +135,16 @@ $heading-colors: (
   dark: map.get($neutral-colors, base),
   light: map.get($neutral-colors, white),
 );
+
+/**
+ *  Checkbox Component
+ */
+$checkbox-margin: 3rem 0;
+$checkbox-input-checked-color: map.get($action-colors, primary, 500);
+$checkbox-input-unchecked-color: map.get($neutral-colors, grey);
+$checkbox-input-size: 2rem;
+$checkbox-input-border-radius: 0.6rem;
+$checkbox-label-font-color: map.get($neutral-colors, text);
+$checkbox-label-font-size: 1.6rem;
+$checkbox-label-line-height: 2.4rem;
+$checkbox-label-font-weight: 400;
