@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:color";
+@use "../../styles/variables";
+
+.button {
+  border: none;
+  border-radius: 900px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  border: variables.$button-outline-border-width solid transparent;
+
+  @each $variant, $props in variables.$button-colors {
+    &--#{$variant} {
+      background-color: map.get($props, backgroundColor);
+      color: map.get($props, fontColor);
+      border-color: map.get($props, backgroundColor);
+
+      &:hover,
+      &:focus {
+        background-color: color.adjust(
+          map.get($props, backgroundColor),
+          $lightness: -10%
+        );
+        border-color: color.adjust(
+          map.get($props, backgroundColor),
+          $lightness: -10%
+        );
+      }
+    }
+  }
+
+  @each $size, $props in variables.$button-sizes {
+    &--#{$size} {
+      font-size: map.get($props, font-size);
+      line-height: map.get($props, line-height);
+
+      $padding: map.get($props, padding);
+      $padding-y: list.nth($padding, 1);
+      $padding-x: list.nth($padding, 2);
+
+      padding: calc(#{$padding-y} - #{variables.$button-outline-border-width})
+        calc(#{$padding-x} - #{variables.$button-outline-border-width});
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border-color: variables.$button-outline-border-color;
+    color: variables.$button-outline-font-color;
+
+    &:hover,
+    &:focus {
+      color: color.adjust(
+        variables.$button-outline-font-color,
+        $lightness: -10%
+      );
+      border-color: color.adjust(
+        variables.$button-outline-border-color,
+        $lightness: -10%
+      );
+    }
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+  }
+}

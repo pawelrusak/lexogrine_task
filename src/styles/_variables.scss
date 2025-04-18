@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $action-colors: (
   primary: (
     500: #25dac5,
@@ -21,3 +23,51 @@ $neutral-colors: (
   white: #ffffff,
   grey: #ebeaed,
 );
+
+/**
+ *  *************************************************************************
+ *                          COMPONENTS VARIABLES
+ *  *************************************************************************
+ */
+
+/**
+ *  Button Component
+ */
+$button-colors: (
+  primary: (
+    backgroundColor: map.get($action-colors, primary, 500),
+    fontColor: map.get($neutral-colors, white),
+  ),
+  secondary: (
+    backgroundColor: map.get($action-colors, secondary, 500),
+    fontColor: map.get($neutral-colors, white),
+  ),
+  third: (
+    backgroundColor: map.get($action-colors, third, 500),
+    fontColor: map.get($neutral-colors, white),
+  ),
+  twitter: (
+    backgroundColor: map.get($color-socials, twitter),
+    fontColor: map.get($neutral-colors, white),
+  ),
+);
+$button-sizes: (
+  small: (
+    padding: 0.9rem 2rem,
+    font-size: 1.6rem,
+    line-height: 2.2rem,
+  ),
+  medium: (
+    padding: 1.2rem 2.2rem,
+    font-size: 1.8rem,
+    line-height: 2.6rem,
+  ),
+  large: (
+    padding: 1.7rem 2.9rem,
+    font-size: 2rem,
+    line-height: 2.6rem,
+  ),
+);
+$button-outline-border-width: 0.2rem;
+$button-outline-border-color: map.get($neutral-colors, grey);
+$button-outline-font-color: map.get($neutral-colors, base);
