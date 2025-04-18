@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "../../styles/variables";
+
+.heading {
+  @each $level, $value in variables.$heading-level {
+    &--level#{$level} {
+      font-size: map.get($value, font-size);
+      line-height: map.get($value, line-height);
+      font-weight: map.get($value, font-weight);
+      letter-spacing: map.get($value, letter-spacing);
+    }
+  }
+
+  @each $color, $value in variables.$heading-colors {
+    &--#{$color} {
+      color: $value;
+    }
+  }
+}
