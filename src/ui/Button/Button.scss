@@ -31,6 +31,18 @@
           $lightness: -10%
         );
       }
+
+      &:disabled {
+        background-color: color.adjust(
+          map.get($props, backgroundColor),
+          $lightness: 30%
+        );
+        border-color: color.adjust(
+          map.get($props, backgroundColor),
+          $lightness: 30%
+        );
+        cursor: default;
+      }
     }
   }
 
