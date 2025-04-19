@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "../../../../styles/variables";
+
+$auth-panel-border-radius: 1rem;
+$auth-panel-padding: 4.8rem 7rem 4.3rem;
+$auth-panel-background: map.get(variables.$background-colors, light);
+$auth-panel-max-width: 47rem;
+
+.auth-panel {
+  padding: $auth-panel-padding;
+  border-radius: $auth-panel-border-radius;
+  background-color: $auth-panel-background;
+  max-width: $auth-panel-max-width;
+  width: 100%;
+}
