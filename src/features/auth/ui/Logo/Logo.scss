@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "../../../../styles/variables";
+
+$logo-color: map.get(variables.$neutral-colors, white);
+
+.logo {
+  font-family: "DM Sans", sans-serif;
+  color: $logo-color;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: -0.29px;
+  text-align: center;
+  min-width: max-content;
+}
