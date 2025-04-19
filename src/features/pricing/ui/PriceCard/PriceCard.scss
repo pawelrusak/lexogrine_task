@@ -1,0 +1,96 @@
+@use "sass:map";
+@use "../../../../styles/variables";
+
+$price-card-padding: 3.9rem 5.3rem 4.1rem;
+$price-card-border-width: 0.2rem;
+$price-card-border-radius: 1rem;
+
+$price-card-colors: (
+  primary: (
+    backgroundColor: map.get(variables.$background-colors, dark),
+    fontColor: map.get(variables.$neutral-colors, white),
+    borderColor: map.get(variables.$background-colors, dark),
+    costBoxFontColor: map.get(variables.$neutral-colors, white),
+  ),
+  secondary: (
+    backgroundColor: map.get(variables.$background-colors, light),
+    fontColor: map.get(variables.$neutral-colors, text),
+    borderColor: map.get(variables.$neutral-colors, grey),
+    costBoxFontColor: map.get(variables.$neutral-colors, base),
+  ),
+);
+
+.price-card {
+  $self: &;
+
+  padding: $price-card-padding;
+  border: $price-card-border-width solid
+    map.get($price-card-colors, secondary, borderColor);
+  border-radius: $price-card-border-radius;
+
+  @each $color, $value in $price-card-colors {
+    &--#{$color} {
+      background-color: map.get($value, backgroundColor);
+      color: map.get($value, fontColor);
+      border-color: map.get($value, borderColor);
+
+      #{$self}__cost-box {
+        color: map.get($value, costBoxFontColor);
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+  }
+
+  &__cost-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__cost-box-amount {
+    font-weight: 700;
+    font-size: 5.8rem;
+    line-height: 7rem;
+    letter-spacing: -1px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+
+    &::after {
+      content: "$";
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      text-align: center;
+      color: currentColor;
+      position: absolute;
+      left: -1.5rem;
+      top: -0.1rem;
+    }
+  }
+
+  &__cost-note {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    text-align: center;
+    padding-top: 2.9rem;
+  }
+}
