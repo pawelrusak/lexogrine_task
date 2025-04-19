@@ -1,6 +1,12 @@
 @use "sass:map";
 @use "sass:color";
 
+/**
+ *  *************************************************************************
+ *                              APP VARIABLES
+ *  *************************************************************************
+ */
+
 $action-colors: (
   primary: (
     500: #25dac5,
@@ -23,6 +29,11 @@ $neutral-colors: (
   activeText: #151439,
   white: #ffffff,
   grey: #ebeaed,
+);
+
+$background-colors: (
+  dark: #2f1893,
+  light: #fff,
 );
 
 /**
