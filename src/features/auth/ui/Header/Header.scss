@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "../../../../styles/variables";
+
+$header-menu-link-color: map.get(variables.$neutral-colors, white);
+$header-menu-font-weight: 500;
+$header-menu-font-size: 1.8rem;
+$header-menu-line-height: 2.6rem;
+$header-menu-link-padding: 0.5rem 0;
+
+.header {
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  &__menu {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    gap: 3.3rem;
+  }
+
+  &__menu-link {
+    text-decoration: none;
+    color: $header-menu-link-color;
+
+    padding: $header-menu-link-padding;
+
+    font-weight: $header-menu-font-weight;
+    font-size: $header-menu-font-size;
+    line-height: $header-menu-line-height;
+
+    &--disabled {
+      opacity: 0.3;
+    }
+  }
+}
