@@ -1,0 +1,46 @@
+@use "sass:map";
+@use "../../../../styles/variables";
+
+$feature-list-colors: (
+  default: (
+    fontColor: map.get(variables.$neutral-colors, grey),
+  ),
+  checked: (
+    fontColor: map.get(variables.$neutral-colors, text),
+  ),
+);
+
+.features-list {
+  margin-top: 3.8rem;
+  margin-bottom: 2.8rem;
+
+  &__item {
+    padding: 0 3rem;
+    display: block;
+
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    position: relative;
+    color: map.get($feature-list-colors, default, fontColor);
+
+    &--checked {
+      color: map.get($feature-list-colors, checked, fontColor);
+
+      &::after {
+        content: url("../../../../assets/icons/feature-check-icon.svg");
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 1rem;
+        z-index: 20;
+        transform: translateY(-35%);
+      }
+    }
+  }
+
+  &__item + &__item {
+    margin-top: 1rem;
+  }
+}
