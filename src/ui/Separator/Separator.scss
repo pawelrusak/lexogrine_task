@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "../../styles/variables";
+
+$separator-color: map.get(variables.$neutral-colors, grey);
+$separator-font-color: map.get(variables.$neutral-colors, text);
+$separator-font-size: 1.6rem;
+$separator-line-height: 2.6rem;
+$separator-font-weight: 400;
+$separator-text-margin: 1.4rem;
+$separator-margin: 1.84rem 0 1.66rem;
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: $separator-font-color;
+  font-size: $separator-font-size;
+  line-height: $separator-line-height;
+  font-weight: $separator-font-weight;
+
+  text-align: center;
+  position: relative;
+  margin: $separator-margin;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background-color: $separator-color;
+  }
+
+  &::before {
+    margin-right: $separator-text-margin;
+  }
+
+  &::after {
+    margin-left: $separator-text-margin;
+  }
+}
