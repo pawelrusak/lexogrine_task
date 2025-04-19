@@ -6,7 +6,7 @@ import "./PagePricingPlan.scss";
 
 const PagePricingPlan = () => {
   return (
-    <section className="page-pricing-plan">
+    <section className="page-pricing-plan__container">
       {pagePricingPlansData.map((pricingPlan, index) => (
         <section className="page-pricing-plan__table-item" key={index}>
           <PriceCard variant={pricingPlan.pricingCard.variant}>
