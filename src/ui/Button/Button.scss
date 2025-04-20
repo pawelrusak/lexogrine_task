@@ -35,11 +35,11 @@
       &:disabled {
         background-color: color.adjust(
           map.get($props, backgroundColor),
-          $lightness: 30%
+          $lightness: 15%
         );
         border-color: color.adjust(
           map.get($props, backgroundColor),
-          $lightness: 30%
+          $lightness: 15%
         );
         cursor: default;
       }
