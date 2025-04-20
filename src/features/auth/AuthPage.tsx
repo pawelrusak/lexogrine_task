@@ -1,54 +1,18 @@
-import "./AuthPage.scss";
 import HeaderMenu from "./ui/Header";
 import Logo from "./ui/Logo";
 import AuthPanel from "./ui/AuthPanel";
 import Heading from "@/ui/Heading";
 import Button from "@/ui/Button";
 import Separator from "@/ui/Separator";
-import Field from "@/ui/Field";
-import Checkbox from "@/ui/Checkbox";
-import { AuthForm } from "./types";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import AuthService from "./services";
+import SignUpForm from "./ui/SignUpForm";
+import "./AuthPage.scss";
 
-import type { ZodType } from "zod";
-
-const authFormSchema: ZodType<AuthForm> = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  terms: z.boolean().refine((val) => val, {
-    message: "Please read and accept the terms and conditions",
-  }),
-});
+import type { AuthServiceResponse } from "./services";
 
 const AuthPage = () => {
-  const {
-    register,
-    handleSubmit: formHandleSubmit,
-    setError,
-    formState: { errors, isSubmitting },
-  } = useForm<AuthForm>({
-    resolver: zodResolver(authFormSchema),
-  });
-
-  const handleSubmit = async (data: AuthForm) => {
-    console.log(data);
-
-    try {
-      const response = await AuthService.signUp(data);
-
-      console.log(response);
-
-      return response;
-    } catch (error) {
-      setError("email", {
-        type: "manual",
-        message: error as string,
-      });
-      console.error(error);
-    }
+  const handleSuccessSignUp = (authResponse: AuthServiceResponse) => {
+    console.log("Token: ", authResponse.token);
   };
 
   return (
@@ -94,56 +58,10 @@ const AuthPage = () => {
             <Button variant="third">Learn More</Button>
           </section>
           <AuthPanel>
-            <form onSubmit={formHandleSubmit(handleSubmit)}>
-              <Heading
-                level={3}
-                as="h1"
-                className="auth-page__auth-panel-heading"
-              >
-                Sign Up Now
-              </Heading>
-
-              <Field>
-                <Field.Label>Email</Field.Label>
-                <Field.Input
-                  placeholder="Your email"
-                  type="email"
-                  {...register("email")}
-                />
-                {errors.email && (
-                  <Field.ErrorMessage>
-                    {errors.email.message}
-                  </Field.ErrorMessage>
-                )}
-              </Field>
-              <Field>
-                <Field.Label>Password</Field.Label>
-                <Field.Input
-                  placeholder="Your password"
-                  type="password"
-                  {...register("password")}
-                />
-                {errors.password && (
-                  <Field.ErrorMessage>
-                    {errors.password.message}
-                  </Field.ErrorMessage>
-                )}
-              </Field>
-
-              <Checkbox>
-                <Checkbox.Input id="confirm-checkbox" {...register("terms")} />
-                <Checkbox.Label htmlFor="confirm-checkbox">
-                  I agree to the Terms of Service.
-                </Checkbox.Label>
-                {errors.terms && (
-                  <div style={{ color: "red" }}>{errors.terms.message}</div>
-                )}
-              </Checkbox>
-
-              <Button variant="secondary" fullWidth disabled={isSubmitting}>
-                Sign Up
-              </Button>
-            </form>
+            <SignUpForm
+              authService={AuthService}
+              onSuccessSignUp={handleSuccessSignUp}
+            />
 
             <Separator>or</Separator>
             <Button variant="twitter" fullWidth>
