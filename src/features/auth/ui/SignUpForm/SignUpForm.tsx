@@ -31,7 +31,7 @@ const SignUpForm = ({ authService, onSuccessSignUp }: AuthFormProps) => {
     register,
     handleSubmit: formHandleSubmit,
     setError,
-    formState: { errors, isLoading, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<AuthFormData>({
     resolver: zodResolver(authFormSchema),
   });
@@ -90,8 +90,6 @@ const SignUpForm = ({ authService, onSuccessSignUp }: AuthFormProps) => {
         )}
       </Checkbox>
 
-      <p>Is submitting {String(isSubmitting)}</p>
-      <p>Is Loading {String(isLoading)}</p>
       <Button variant="secondary" fullWidth disabled={isSubmitting}>
         Sign Up
       </Button>
