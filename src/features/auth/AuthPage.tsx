@@ -6,13 +6,16 @@ import Button from "@/ui/Button";
 import Separator from "@/ui/Separator";
 import AuthService from "./services";
 import SignUpForm from "./ui/SignUpForm";
+import { useAuth } from "@/context/Auth.context";
 import "./AuthPage.scss";
 
 import type { AuthServiceResponse } from "./services";
 
 const AuthPage = () => {
+  const { signUp } = useAuth();
+
   const handleSuccessSignUp = (authResponse: AuthServiceResponse) => {
-    console.log("Token: ", authResponse.token);
+    signUp(authResponse.token);
   };
 
   return (
