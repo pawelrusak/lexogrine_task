@@ -7,8 +7,50 @@ import Button from "@/ui/Button";
 import Separator from "@/ui/Separator";
 import Field from "@/ui/Field";
 import Checkbox from "@/ui/Checkbox";
+import { AuthForm } from "./types";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import AuthService from "./services";
 
-const AuthPagePlay = () => {
+import type { ZodType } from "zod";
+
+const authFormSchema: ZodType<AuthForm> = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+  terms: z.boolean().refine((val) => val, {
+    message: "Please read and accept the terms and conditions",
+  }),
+});
+
+const AuthPage = () => {
+  const {
+    register,
+    handleSubmit: formHandleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<AuthForm>({
+    resolver: zodResolver(authFormSchema),
+  });
+
+  const handleSubmit = async (data: AuthForm) => {
+    console.log(data);
+
+    try {
+      const response = await AuthService.signUp(data);
+
+      console.log(response);
+
+      return response;
+    } catch (error) {
+      setError("email", {
+        type: "manual",
+        message: error as string,
+      });
+      console.error(error);
+    }
+  };
+
   return (
     <div className="auth-page">
       <div className="auth-page__container">
@@ -52,7 +94,7 @@ const AuthPagePlay = () => {
             <Button variant="third">Learn More</Button>
           </section>
           <AuthPanel>
-            <form>
+            <form onSubmit={formHandleSubmit(handleSubmit)}>
               <Heading
                 level={3}
                 as="h1"
@@ -63,37 +105,59 @@ const AuthPagePlay = () => {
 
               <Field>
                 <Field.Label>Email</Field.Label>
-                <Field.Input placeholder="Your email" type="email" />
+                <Field.Input
+                  placeholder="Your email"
+                  type="email"
+                  {...register("email")}
+                />
+                {errors.email && (
+                  <Field.ErrorMessage>
+                    {errors.email.message}
+                  </Field.ErrorMessage>
+                )}
               </Field>
               <Field>
                 <Field.Label>Password</Field.Label>
-                <Field.Input placeholder="Your password" type="password" />
+                <Field.Input
+                  placeholder="Your password"
+                  type="password"
+                  {...register("password")}
+                />
+                {errors.password && (
+                  <Field.ErrorMessage>
+                    {errors.password.message}
+                  </Field.ErrorMessage>
+                )}
               </Field>
 
               <Checkbox>
-                <Checkbox.Input id="confirm-checkbox" />
+                <Checkbox.Input id="confirm-checkbox" {...register("terms")} />
                 <Checkbox.Label htmlFor="confirm-checkbox">
                   I agree to the Terms of Service.
                 </Checkbox.Label>
+                {errors.terms && (
+                  <div style={{ color: "red" }}>{errors.terms.message}</div>
+                )}
               </Checkbox>
-              <Button variant="secondary" fullWidth>
+
+              <Button variant="secondary" fullWidth disabled={isSubmitting}>
                 Sign Up
               </Button>
-
-              <Separator>or</Separator>
-              <Button variant="twitter" fullWidth>
-                Login via Twitter
-              </Button>
-
-              <p className="auth-page__auth-panel-sing-in">
-                <span className="auth-page__auth-panel-sing-in-action-text">
-                  Do you have an Account?
-                </span>
-                <a href="#" className="auth-page__auth-panel-sing-in-link">
-                  Sign In
-                </a>
-              </p>
             </form>
+
+            <Separator>or</Separator>
+            <Button variant="twitter" fullWidth>
+              Login via Twitter
+            </Button>
+
+            <p className="auth-page__auth-panel-sing-in">
+              <span className="auth-page__auth-panel-sing-in-action-text">
+                Do you have an Account?
+              </span>
+              <a href="#" className="auth-page__auth-panel-sing-in-link">
+                Sign In
+              </a>
+            </p>
           </AuthPanel>
         </main>
       </div>
@@ -101,4 +165,4 @@ const AuthPagePlay = () => {
   );
 };
 
-export default AuthPagePlay;
+export default AuthPage;
