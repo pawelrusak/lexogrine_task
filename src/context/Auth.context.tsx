@@ -24,7 +24,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const storedToken = localStorage.getItem(AUTH_TOKEN_KEY);
 
     if (storedToken) {
-      setToken(JSON.parse(storedToken));
+      setToken(storedToken);
     }
   }, []);
 
