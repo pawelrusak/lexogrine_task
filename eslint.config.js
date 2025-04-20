@@ -21,7 +21,10 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": [
         "warn",
-        { allowConstantExport: true, allowExportNames: ["useField"] },
+        {
+          allowConstantExport: true,
+          allowExportNames: ["useField", "useAuth"],
+        },
       ],
     },
   }
