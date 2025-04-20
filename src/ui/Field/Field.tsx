@@ -20,10 +20,7 @@ const Field = ({ children, controlId, invalid, ...props }: FieldProps) => {
 
 type FieldLabelProps = React.ComponentPropsWithoutRef<"label">;
 
-const FieldLabel: React.FC<FieldLabelProps> = ({
-  children,
-  ...props
-}: FieldLabelProps) => {
+const FieldLabel = ({ children, ...props }: FieldLabelProps) => {
   const { controlId } = useField();
 
   return (

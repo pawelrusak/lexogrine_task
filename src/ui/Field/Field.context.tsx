@@ -13,7 +13,11 @@ type FieldProviderProps = {
   children: React.ReactNode;
 } & FieldContextParams;
 
-function FieldProvider({ children, controlId, invalid }: FieldProviderProps) {
+const FieldProvider = ({
+  children,
+  controlId,
+  invalid,
+}: FieldProviderProps) => {
   const defaultId = React.useId();
 
   return (
@@ -23,9 +27,9 @@ function FieldProvider({ children, controlId, invalid }: FieldProviderProps) {
       {children}
     </FieldContext.Provider>
   );
-}
+};
 
-function useField() {
+const useField = () => {
   const context = React.useContext(FieldContext);
 
   if (context === undefined) {
@@ -33,7 +37,7 @@ function useField() {
   }
 
   return context;
-}
+};
 
 export { FieldContext, FieldProvider, useField };
 export type { FieldProviderProps };
