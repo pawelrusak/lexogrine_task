@@ -1,7 +1,9 @@
 @use "sass:map";
 @use "../../../../styles/variables";
 
-$price-card-padding: 3.9rem 5.3rem 4.1rem;
+/* @link https://utopia.fyi/clamp/calculator?a=600,1100,17—41 */
+$price-card-padding: clamp(1.7rem, -0.94rem + 4.4vw, 3.9rem)
+  clamp(2rem, -1.96rem + 6.6vw, 5.3rem) clamp(1.7rem, -1.18rem + 4.8vw, 4.1rem);
 $price-card-border-width: 0.2rem;
 $price-card-border-radius: 1rem;
 
