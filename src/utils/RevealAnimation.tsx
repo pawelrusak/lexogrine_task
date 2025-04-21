@@ -3,15 +3,23 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 import type { Variants } from "motion/react";
 
-type RevealProps = {
+type RevealAnimationProps = {
   children: ReactNode;
 };
 
 const variants: Variants = {
-  hidden: { clipPath: "inset(0% 0% 100% 0%)" },
+  hidden: {
+    clipPath: "inset(0% 0% 100% 0%)",
+  },
   visible: {
     clipPath: "inset(0% 0% 0% 0%)",
-    transition: { duration: 0.4, delay: 0, ease: [0.25, 0.1, 0.25, 1] },
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+    transitionEnd: {
+      clipPath: "unset",
+    },
   },
   exit: {
     clipPath: "inset(0% 0% 100% 0%)",
@@ -19,9 +27,9 @@ const variants: Variants = {
   },
 };
 
-const RevealAnimation = ({ children }: RevealProps) => {
+const RevealAnimation = ({ children }: RevealAnimationProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { margin: "-10% 0px" });
+  const inView = useInView(ref);
   const controls = useAnimationControls();
 
   useEffect(() => {
