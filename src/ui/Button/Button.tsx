@@ -48,7 +48,7 @@ const Button = <TComponent extends React.ElementType = "button">({
   ...props
 }: ButtonProps<TComponent>) => {
   const Component = as || "button";
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   return (
     <MotionComponent
