@@ -17,7 +17,7 @@ const authFormSchema: ZodType<AuthFormData> = z.object({
   email: z.string().email(),
   password: z.string().min(8),
   terms: z.boolean().refine((val) => val, {
-    message: "Please read and accept the terms and conditions",
+    message: "Please read and accept the terms.",
   }),
 });
 
@@ -57,7 +57,7 @@ const SignUpForm = ({ authService, onSuccessSignUp }: AuthFormProps) => {
         Sign Up Now
       </Heading>
 
-      <Field>
+      <Field invalid={Boolean(errors.email)}>
         <Field.Label>Email</Field.Label>
         <Field.Input
           placeholder="Your email"
@@ -68,7 +68,7 @@ const SignUpForm = ({ authService, onSuccessSignUp }: AuthFormProps) => {
           <Field.ErrorMessage>{errors.email.message}</Field.ErrorMessage>
         )}
       </Field>
-      <Field>
+      <Field invalid={Boolean(errors.password)}>
         <Field.Label>Password</Field.Label>
         <Field.Input
           placeholder="Your password"
@@ -81,12 +81,14 @@ const SignUpForm = ({ authService, onSuccessSignUp }: AuthFormProps) => {
       </Field>
 
       <Checkbox>
-        <Checkbox.Input id="confirm-checkbox" {...register("terms")} />
-        <Checkbox.Label htmlFor="confirm-checkbox">
-          I agree to the Terms of Service.
-        </Checkbox.Label>
+        <Checkbox.InputControl>
+          <Checkbox.Input id="confirm-checkbox" {...register("terms")} />
+          <Checkbox.Label htmlFor="confirm-checkbox">
+            I agree to the Terms of Service.
+          </Checkbox.Label>
+        </Checkbox.InputControl>
         {errors.terms && (
-          <div style={{ color: "red" }}>{errors.terms.message}</div>
+          <Checkbox.ErrorMessage>{errors.terms.message}</Checkbox.ErrorMessage>
         )}
       </Checkbox>
 

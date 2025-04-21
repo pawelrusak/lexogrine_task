@@ -1,11 +1,15 @@
 @use "sass:map";
+@use "sass:list";
 @use "../../styles/variables";
 
 .checkbox {
   margin: variables.$checkbox-margin;
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
+
+  &__input-control {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
 
   &__input {
     appearance: none;
@@ -46,5 +50,14 @@
     line-height: variables.$checkbox-label-line-height;
     font-weight: variables.$checkbox-label-font-weight;
     cursor: pointer;
+  }
+
+  &__error-message {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: map.get(variables.$field-colors, error);
+
+    margin: 0.8rem;
   }
 }

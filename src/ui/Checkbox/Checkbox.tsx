@@ -23,7 +23,21 @@ const CheckboxLabel = (props: CheckboxLabelProps) => {
   return <label className="checkbox__label" {...props} />;
 };
 
+type CheckboxInputControlProps = React.ComponentPropsWithoutRef<"span">;
+
+const CheckboxInputControl = (props: CheckboxInputControlProps) => {
+  return <div className="checkbox__input-control" {...props} />;
+};
+
+type CheckboxErrorMessagesProps = React.ComponentPropsWithoutRef<"span">;
+
+const CheckboxErrorMessage = (props: CheckboxErrorMessagesProps) => {
+  return <span className="checkbox__error-message" {...props} />;
+};
+
 Checkbox.Input = CheckboxInput;
 Checkbox.Label = CheckboxLabel;
+Checkbox.ErrorMessage = CheckboxErrorMessage;
+Checkbox.InputControl = CheckboxInputControl;
 
 export default Checkbox;
