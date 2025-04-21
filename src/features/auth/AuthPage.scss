@@ -2,6 +2,7 @@
 @use "sass:math";
 @use "sass:color";
 @use "../../styles/variables";
+@use "../../styles/mixins";
 
 // From design to calculate spacing
 $design-auth-page-height: 890px;
@@ -9,14 +10,14 @@ $design-auth-page-width: 1400px;
 
 $auth-page-background: map.get(variables.$background-colors, dark);
 $auth-page-container-width: math.div(970px, $design-auth-page-width) * 100vw;
-$auth-page-container-fluid-margin-top: min(
-  math.div(65px, $design-auth-page-height) * 100vh,
+/* @link https://utopia.fyi/clamp/calculator?a=320,1200,20—65 */
+$auth-page-container-fluid-margin-top: clamp(
+  2rem,
+  0.36364rem + 5.1136vw,
   6.5rem
 );
-$auth-page-content-fluid-margin-top: min(
-  math.div(82px, $design-auth-page-height) * 100vh,
-  8.2rem
-);
+/* @link https://utopia.fyi/clamp/calculator?a=320,1200,30—82 */
+$auth-page-content-fluid-margin-top: clamp(3px, 1.10909px + 5.9091vw, 8.2rem);
 
 .auth-page {
   background-color: $auth-page-background;
@@ -25,20 +26,38 @@ $auth-page-content-fluid-margin-top: min(
   padding: 0 1rem;
 
   &__container {
-    max-width: $auth-page-container-width;
-    margin: 0 auto;
+    max-width: 100%;
+    margin-inline: auto;
     margin-top: $auth-page-container-fluid-margin-top;
     width: 100%;
+
+    @include mixins.media-breakpoint-up("sm") {
+      max-width: 80vw;
+    }
+
+    @include mixins.media-breakpoint-up("md") {
+      max-width: $auth-page-container-width;
+    }
   }
 
   &__content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: $auth-page-content-fluid-margin-top;
+    gap: 1.5rem;
+
+    @include mixins.media-breakpoint-up("md") {
+      justify-content: space-between;
+    }
   }
 
   &__cta-section {
-    max-width: 42.7rem;
+    display: none;
+
+    @include mixins.media-breakpoint-up("md") {
+      display: block;
+      max-width: 42.7rem;
+    }
   }
 
   &__lead {
