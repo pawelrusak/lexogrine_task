@@ -15,7 +15,7 @@ const variants: Variants = {
   },
   exit: {
     clipPath: "inset(0% 0% 100% 0%)",
-    transition: { duration: 0.4, ease: "easeInOut" },
+    transition: { duration: 0.5, ease: "easeInOut" },
   },
 };
 
