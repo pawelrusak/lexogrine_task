@@ -1,10 +1,10 @@
+import React from "react";
 import { motion, useInView, useAnimationControls } from "motion/react";
-import { useEffect, useRef, type ReactNode } from "react";
 
 import type { Variants } from "motion/react";
 
 type RevealAnimationProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 const variants: Variants = {
@@ -14,25 +14,25 @@ const variants: Variants = {
   visible: {
     clipPath: "inset(0% 0% 0% 0%)",
     transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-    transitionEnd: {
-      clipPath: "unset",
+      duration: 0.6,
+      ease: "easeIn",
     },
   },
   exit: {
     clipPath: "inset(0% 0% 100% 0%)",
-    transition: { duration: 0.5, ease: "easeInOut" },
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
   },
 };
 
 const RevealAnimation = ({ children }: RevealAnimationProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
   const controls = useAnimationControls();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (inView) controls.start("visible");
   }, [inView, controls]);
 
