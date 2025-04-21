@@ -1,4 +1,7 @@
+import React from "react";
 import { cva } from "class-variance-authority";
+import { motion } from "motion/react";
+import { pulseVariants } from "./Button.motion";
 import "./Button.scss";
 
 import type { VariantProps } from "class-variance-authority";
@@ -45,14 +48,18 @@ const Button = <TComponent extends React.ElementType = "button">({
   ...props
 }: ButtonProps<TComponent>) => {
   const Component = as || "button";
+  const MotionComponent = motion(Component);
 
   return (
-    <Component
+    <MotionComponent
       className={button({ size, variant, fullWidth, className })}
+      variants={pulseVariants}
+      whileHover="hover"
+      whileTap="tap"
       {...props}
     >
       {children}
-    </Component>
+    </MotionComponent>
   );
 };
 
