@@ -11,8 +11,8 @@ $feature-list-colors: (
 );
 
 .features-list {
-  margin-top: 3.8rem;
-  margin-bottom: 2.8rem;
+  margin-top: clamp(1.9rem, 0.85172rem + 3.2759vw, 3.8rem);
+  margin-bottom: clamp(1.4rem, 0.62759rem + 2.4138vw, 2.8rem);
 
   &__item {
     padding: 0 3rem;
