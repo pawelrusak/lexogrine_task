@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { cva, cx } from "class-variance-authority";
 import "./Header.scss";
 
 import type { VariantProps } from "class-variance-authority";
@@ -19,7 +19,7 @@ type HeaderMenuProps = React.ComponentPropsWithoutRef<"ul">;
 
 const HeaderMenu = ({ children, className, ...props }: HeaderMenuProps) => {
   return (
-    <ul className={`header__menu ${className && className}`} {...props}>
+    <ul {...props} className={cx("header__menu", className)}>
       {children}
     </ul>
   );
