@@ -12,12 +12,11 @@ $pricing-page-header-subtitle-font-color: map.get(
   variables.$neutral-colors,
   text
 );
-$pricing-page-header-margin-bottom: min(
-  math.div(64px, $pricing-page-height) * 100vh,
-  6.4rem
-);
+/* @link https://utopia.fyi/clamp/calculator?a=320,1200,20—64 */
+$pricing-page-header-margin-bottom: clamp(2rem, 0.4rem + 5vw, 6.4rem);
 
 .pricing-page {
+  padding: 1rem;
   min-height: 100vh;
   display: grid;
   place-items: center start;
