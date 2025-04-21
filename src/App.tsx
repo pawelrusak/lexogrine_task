@@ -1,17 +1,22 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
+import { AnimatePresence } from "motion/react";
 
 import AuthRoute from "@/utils/AuthRoute";
 import AuthPage from "@/features/auth/AuthPage";
 import PricingPage from "@/features/pricing/PricingPage";
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route element={<AuthRoute redirectPath="/pricing" />}>
-        <Route index element={<AuthPage />} />
-      </Route>
-      <Route path="/pricing" element={<PricingPage />} />
-    </Routes>
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route element={<AuthRoute redirectPath="/pricing" />}>
+          <Route index element={<AuthPage />} />
+        </Route>
+        <Route path="/pricing" element={<PricingPage />} />
+      </Routes>
+    </AnimatePresence>
   );
 };
 
