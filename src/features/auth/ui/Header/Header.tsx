@@ -1,4 +1,6 @@
 import { cva, cx } from "class-variance-authority";
+
+import TextAnimation from "@/utils/TextAnimation";
 import "./Header.scss";
 
 import type { VariantProps } from "class-variance-authority";
@@ -52,12 +54,15 @@ const HeaderMenuLink = <TComponent extends React.ElementType = "a">({
   as,
   className,
   disabled,
+  children,
   ...props
 }: HeaderMenuLinkProps<TComponent>) => {
   const Component = as || "a";
 
   return (
-    <Component className={headerMenuLink({ disabled, className })} {...props} />
+    <Component className={headerMenuLink({ disabled, className })} {...props}>
+      <TextAnimation text={children} display={!disabled} />
+    </Component>
   );
 };
 
