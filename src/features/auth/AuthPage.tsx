@@ -1,5 +1,4 @@
-import HeaderMenu from "./ui/Header";
-import Logo from "./ui/Logo";
+import HeaderMenu from "./ui/HeaderMenu";
 import AuthPanel from "./ui/AuthPanel";
 import Heading from "@/ui/Heading";
 import Button from "@/ui/Button";
@@ -21,28 +20,7 @@ const AuthPage = () => {
   return (
     <div className="auth-page">
       <div className="auth-page__container">
-        <HeaderMenu>
-          <Logo />
-          <HeaderMenu.Menu>
-            <HeaderMenu.MenuItem>
-              <HeaderMenu.MenuLink disabled>Overview</HeaderMenu.MenuLink>
-            </HeaderMenu.MenuItem>
-            <HeaderMenu.MenuItem>
-              <HeaderMenu.MenuLink>Prices</HeaderMenu.MenuLink>
-            </HeaderMenu.MenuItem>
-            <HeaderMenu.MenuItem>
-              <HeaderMenu.MenuLink>Blog</HeaderMenu.MenuLink>
-            </HeaderMenu.MenuItem>
-            <HeaderMenu.MenuItem>
-              <HeaderMenu.MenuLink>Feedback</HeaderMenu.MenuLink>
-            </HeaderMenu.MenuItem>
-            <HeaderMenu.MenuItem>
-              <Button as="a" variant="third" size="small">
-                Purchase
-              </Button>
-            </HeaderMenu.MenuItem>
-          </HeaderMenu.Menu>
-        </HeaderMenu>
+        <HeaderMenu />
         <main className="auth-page__content">
           <section className="auth-page__cta-section">
             <Heading level={2} as="h2" variant="light">

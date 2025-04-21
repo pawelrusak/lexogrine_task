@@ -1,0 +1,19 @@
+@use "../../../../styles/mixins";
+
+.header-menu {
+  &__menu {
+    display: none;
+
+    @include mixins.media-breakpoint-up("sm") {
+      display: flex;
+    }
+  }
+
+  &__logo {
+    margin-inline: auto;
+
+    @include mixins.media-breakpoint-up("sm") {
+      margin: 0;
+    }
+  }
+}
