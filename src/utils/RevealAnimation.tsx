@@ -35,7 +35,11 @@ const RevealAnimation = ({ children }: RevealProps) => {
       animate={controls}
       exit="exit"
       variants={variants}
-      style={{ overflow: "hidden" }}
+      style={{
+        overflow: "hidden",
+        willChange: "clip-path",
+        display: "block",
+      }}
     >
       {children}
     </motion.div>
