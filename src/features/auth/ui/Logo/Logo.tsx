@@ -1,4 +1,5 @@
 import React from "react";
+import { cx } from "class-variance-authority";
 import "./Logo.scss";
 
 type LogoProps<TComponent extends React.ElementType = "span"> = {
@@ -14,7 +15,7 @@ const Logo = <TComponent extends React.ElementType = "span">({
   const Component = as || "span";
 
   return (
-    <Component className={`logo ${className}`} {...props}>
+    <Component className={cx("logo", className)} {...props}>
       Startup 3
     </Component>
   );
