@@ -2,7 +2,9 @@
 @use "../../../../styles/variables";
 
 $auth-panel-border-radius: 1rem;
-$auth-panel-padding: 4.8rem 7rem 4.3rem;
+/* @link https://utopia.fyi/clamp/calculator?a=320,800,20—43 */
+$auth-panel-padding: clamp(2rem, 0.13rem + 5.8333vw, 4.8rem)
+  clamp(2rem, -1.3rem + 10.4167vw, 7rem) clamp(2rem, 0.47rem + 4.7917vw, 4.3rem);
 $auth-panel-background: map.get(variables.$background-colors, light);
 $auth-panel-max-width: 47rem;
 
