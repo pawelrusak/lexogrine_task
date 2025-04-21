@@ -36,6 +36,14 @@ $background-colors: (
   light: #fff,
 );
 
+$breakpoints: (
+  "sm": 57.6rem,
+  "md": 76.8rem,
+  "lg": 99.2rem,
+  "xl": 120rem,
+  "xxl": 140rem,
+);
+
 /**
  *  *************************************************************************
  *                          COMPONENTS VARIABLES

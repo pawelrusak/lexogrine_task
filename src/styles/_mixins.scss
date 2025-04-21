@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "./variables";
+
+// Inspired by Bootstrap https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
+@mixin media-breakpoint-up($breakpoint) {
+  $min-width: map.get(variables.$breakpoints, $breakpoint);
+
+  @if $min-width == null {
+    @error "Wrong breakpoint!";
+  }
+
+  @media (min-width: $min-width) {
+    @content;
+  }
+}
