@@ -1,13 +1,27 @@
 @use "sass:map";
 @use "../../styles/variables";
+@use "../../styles/mixins";
+
+$minimal-responsive-font-size: 2.5rem;
 
 .heading {
-  @each $level, $value in variables.$heading-level {
+  @each $level, $token in variables.$heading-level {
+    $font-size: map.get($token, font-size);
+    $base-line-height: map.get($token, line-height);
+
     &--level#{$level} {
-      font-size: map.get($value, font-size);
-      line-height: map.get($value, line-height);
-      font-weight: map.get($value, font-weight);
-      letter-spacing: map.get($value, letter-spacing);
+      font-size: $font-size * 0.8;
+      line-height: $base-line-height * 0.8;
+
+      @include mixins.media-breakpoint-up("sm") {
+        & {
+          font-size: $font-size;
+          line-height: $base-line-height;
+        }
+      }
+
+      font-weight: map.get($token, font-weight);
+      letter-spacing: map.get($token, letter-spacing);
     }
   }
 
